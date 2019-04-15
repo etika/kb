@@ -1,0 +1,7 @@
+<%if @errors_message.present?%>
+$(".alert-danger").empty();
+$(".alert-danger").append( "<%=raw @errors_message%>");
+$(".alert-danger").show();
+<%else%>
+window.location = "/users/sign_in"
+<%end%>

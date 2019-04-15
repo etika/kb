@@ -1,0 +1,16 @@
+<%= line_chart Event.group(:category_id).count %>
+<h1> Event Data </h1>
+<table>
+<tr>
+<th> Category </th>
+<th> Frequency Count </th>
+</tr>
+<tbody>
+<% Event.group(:category_id).count.each do |k,v| %>
+<tr>
+ <td> <%=Category.find(k).name %></td>
+ <td> <%=v%> </td>
+ </tr>
+ <%end%>
+ </tbody>
+ </table>

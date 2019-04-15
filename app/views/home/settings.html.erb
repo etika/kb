@@ -1,0 +1,32 @@
+
+   <p id="notice alert-danger"><%= notice %></p>
+
+      <%= form_tag change_password_path, :method => :get, remote:true,:class=>"form-inline" do %>
+       <div class="col-sm-6 col-xs-12">
+        <div class="tp_btm2">
+         <%= password_field_tag :old_password, params[:old_password],:placeholder=>"Password",:class=>"form-control tp_btm2" %></br>
+        </div>
+        <div class="tp_btm2">
+        <%= password_field_tag :new_password, params[:new_password],:class=>"form-control tp_btm2",:placeholder=>"New Password" %></br>
+
+        </div>
+        <div class="tp_btm2">
+         <%= password_field_tag :confirm_password, params[:confirm_password],:class=>"form-control tp_btm2",:placeholder=>"Confirm New Password" %></br>
+        </div>
+        <div class="col-sm-12 col-xs-12 tp_btm2">
+       <%= submit_tag "CHANGE PASSWORD", :class=>"btn btn-default gradient_btn2 pull-right" %>
+        </div>
+      <%end%>
+    </div>
+    <div class="col-sm-6 col-xs-12"> 
+    <%= form_tag change_email_path, :method => :get, remote:true do %> 
+    <div class="tp_btm2">
+     <%= text_field_tag :email, params[:email],:class=>"form-control tp_btm2" ,:placeholder=>"Email" %></br></div>
+    
+    
+    <div class="col-sm-12 col-xs-12 tp_btm2">
+     <%= submit_tag "CHANGE EMAIL ADDRESS", :class=>"btn btn-default gradient_btn2 pull-right" %>
+    </div>
+    </div>
+    <%end%>
+

@@ -1,0 +1,10 @@
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}  alert alert-warning" %>
+<% end %>
+<%= form_tag('/check_verification', method: :get, remote:true) do %>
+<%=label_tag 'Please enter phone'%></br>
+  <%= text_field "user", "phone", "size" => 20 %></br>
+  <%=label_tag 'Please enter phone otp'%></br>
+  <%= text_field "user", "otp", "size" => 20 %>
+  <div><%= submit_tag 'Submit' %></div>
+<% end %>

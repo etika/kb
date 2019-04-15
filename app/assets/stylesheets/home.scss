@@ -1,0 +1,12 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$color_1: white;
+
+main {
+  background: url("/assets/kbaby.jpg");
+  background-size: cover;
+  height: 500px;
+  text-align: center;
+  color: $color_1;
+}

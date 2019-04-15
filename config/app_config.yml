@@ -1,0 +1,23 @@
+development:
+  perform_authentication: false
+  TWILIO_SID: "AC4fde6f50b9fbb580923236b691bfc8e2"
+  TWILIO_TOKEN: "ae29da2b47bc7697f2176a72d9123516"
+  TWILIO_PHONE_NUMBER: "12063506218"
+  email: "webpagemtor@gmail.com"
+  pass: "anbbbb"
+  host_url: "localhost:3000"
+
+
+test:
+  perform_authentication: false
+
+production:
+  perform_authentication: true
+  username: admin
+  password: secret
+  email: "webpagemtor@gmail.com"
+  pass: "abbbbbbb"
+  host_url: "nztdemo.com:8080"
+  TWILIO_SID: "ACb4d1176d750f84fa746fabf85ee32f65"
+  TWILIO_TOKEN: "733a591c6bd92556e71f19c87e208bac"
+  TWILIO_PHONE_NUMBER: "9713022615"

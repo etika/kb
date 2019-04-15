@@ -1,0 +1,25 @@
+<div class="alert-success">
+
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>User id</th>
+        <th>User Email</th>
+        <th>Promote </th>
+        <th> Delete a Worker </th>
+     </tr>
+  </thead>
+  <tbody>
+    <%-@users.each do |user| -%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "Promote worker", promote_worker_path(user), remote: true %>
+</td>
+       <td><%= link_to "Delete Worker", delete_worker_path(user), remote: true %>
+</td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>
