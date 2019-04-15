@@ -1,0 +1,2 @@
+$("#events").html("")
+$("#events").append("<%=raw escape_javascript(render partial: 'logs', locals: { events: @events } ) %>");

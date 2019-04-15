@@ -8,17 +8,11 @@ class HomeController < ApplicationController
    end
 
    def logs
-      lines = params[:lines]
-          @users = User.all
-
-      if Rails.env == "production"
-        @logs = `tail -n #{lines} log/production.log`
-      else
-        @logs = `tail -n #{lines} log/development.log`
-      end
+      @events= Event.all
       respond_to do |format|
-        format.html{ @logs}
-        format.csv { send_data to_csv(@logs), filename: "users-#{Date.today}.csv" }
+        format.html{ @events}
+        format.js
+        format.csv { send_data to_csv(@events), filename: "events-#{Date.today}.csv" }
        end
    end
 

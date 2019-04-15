@@ -21,3 +21,12 @@
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
+
+$(function() {
+    setTimeout(updateLogs, 100000)
+});
+
+function updateLogs () {
+  $.getScript("/logs");
+  setTimeout(updateLogs, 100000);
+}

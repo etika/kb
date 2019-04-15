@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th> Created At </th>
+    <th> User  </th>
+    <th>  Phone Number </th>
+    <th>  Event Category </th>
+    <th> Message </th>
+  </tr>
+ <%events.each do |event|%>
+ <tr>
+  <td> <%=event.created_at%> </td>
+  <td> <%#=event.user.email%> </td>
+  <td> <%#=event.user.phone_number%> </td>
+  <td> <%=event.category.name%> </td>
+ <td> <%=event.message%></td>
+ </tr>
+ <%end%>
+ </table>

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   belongs_to :role
   has_many :polls
   has_many :admins, through: :polls
+  has_many :events
 
   def is?(role)
     return  Role.find_by_name(role.to_s).id== self.role_id
