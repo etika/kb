@@ -1,29 +1,28 @@
 require 'csv'
-
+require 'twilio_rest'
 class HomeController < ApplicationController
-   def summary
-    binding.pry
+  include TwilioRest
+  def summary
     @user= current_user
+  end
 
-   end
-
-   def logs
-      @events= Event.all
-      respond_to do |format|
-        format.html{ @events}
-        format.js
-        format.csv { send_data to_csv(@events), filename: "events-#{Date.today}.csv" }
-       end
-   end
-
-
-   def settings
-
-   end
-
-   def admin_settings
-     @users =User.where(role_id:2, account_activated:true)
+  def logs
+    @events= Event.all
+    respond_to do |format|
+      format.html{ @events}
+      format.js
+      format.csv { send_data to_csv(@events), filename: "events-#{Date.today}.csv" }
     end
+  end
+
+
+  def settings
+    #send_message(current_user.phone_number, params[:otp])
+  end
+
+  def admin_settings
+    @users =User.where(role_id:2, account_activated:true)
+  end
 
    def index
    end
@@ -54,11 +53,19 @@ class HomeController < ApplicationController
 
 
     end
-    def check_verification
-  respond_to do |format|
 
+    def check_otp
+      @otp= params[:otp]
+      # send_message(current_user.phone_number, params[:otp])
+            respond_to do |format|
+               format.js
+             end
+    end
+
+    def check_verification
+      respond_to do |format|
       user=  User.find_by_phone_number(params[:user][:phone])
-      if( User.find_by_phone_number(params[:user][:phone]).present?)
+      if(User.find_by_phone_number(params[:user][:phone]).present?)
         if user.activation_token == params[:user][:otp]
            user.phone_verified =true
            if(user.confirmed? ==true)
@@ -67,7 +74,6 @@ class HomeController < ApplicationController
              user.save
         end
       notice = "User account activated"
-
       else
        notice = "User not found"
       end
@@ -84,6 +90,8 @@ class HomeController < ApplicationController
         if @user.update_attribute(:password,params[:new_password])
           @message = "Password updated!"
           @success=true
+          reset_session
+          redirect_to root_path
         else
           @message = "Password not updated"
         end
@@ -93,7 +101,7 @@ class HomeController < ApplicationController
      else
        @message="Password and Confirm Password does not match"
     end
-
+    puts "pass", @message
   end
 #Updating email for the current user and sending a
 #confirmation mail on user's account
@@ -106,13 +114,14 @@ class HomeController < ApplicationController
    end
   end
 
-   def to_csv(logs)
-    attributes = %w{data}
+   def to_csv(events)
+    attributes = %w{created_at, user, phone_number, category, message }
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
-
-        csv <<[logs]
+       events.each do |event|
+        csv <<[event.created_at, "event.user.email", "event.user.phone_number", event.category.name, event.message]
+       end
     end
   end
  end

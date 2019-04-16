@@ -18,11 +18,13 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require datatables
 //= require Chart.bundle
 //= require chartkick
 //= require_tree .
 
 $(function() {
+    $("#event_lists").dataTable();
     setTimeout(updateLogs, 100000)
 });
 

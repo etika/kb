@@ -17,20 +17,24 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
+    <%if user_signed_in?%>
+       <% if current_user.is?(:admin) %>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/logs">Logs <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <%= link_to('Summary', summary_path, method: :get, class:'nav-link') %> 
       </li>
+      <%else%>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <%= link_to('Settings', home_settings_path, method: :get, class:'nav-link') %> 
       </li>
+      <%end%>
+      <%end%>
     </ul>
     <span class="navbar-text">
       <% if user_signed_in? %>
         <%= current_user.email %>  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-
       <% else %>
         <%= link_to "Sign in", new_user_session_path %><br />
       <% end %>

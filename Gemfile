@@ -70,4 +70,5 @@ gem 'jquery-rails'
 gem "chartkick"
 gem 'groupdate'
 gem 'cancancan'
+gem 'jquery-datatables'
 

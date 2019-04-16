@@ -1,0 +1,6 @@
+<%if current_user.activation_token == @otp %>
+  $(".otp_form").hide();
+  $(".password_form").show();
+<%else%>
+  $(".error").html("Otp not confirmed")
+<%end%>

@@ -3,15 +3,14 @@
 module TwilioRest
 # this will send just the normal sms
 def send_message(phone_number,activation_token)
-  binding.pry
   number_to_send_to = phone_number
-  @twilio_client = Twilio::REST::Client.new APP_CONFIG['TWILIO_SID'], APP_CONFIG['TWILIO_TOKEN']
+  # @twilio_client = Twilio::REST::Client.new APP_CONFIG['TWILIO_SID'], APP_CONFIG['TWILIO_TOKEN']
 
- @twilio_client.messages.create(
-                :from => "+1#{APP_CONFIG['TWILIO_PHONE_NUMBER']}",
-                :to => number_to_send_to,
-                :body =>"Security Code is #{activation_token}"
-                )
+ # @twilio_client.messages.create(
+ #                :from => "+1#{APP_CONFIG['TWILIO_PHONE_NUMBER']}",
+ #                :to => number_to_send_to,
+ #                :body =>"Security Code is #{activation_token}"
+ #                )
 
 end
 
@@ -35,7 +34,7 @@ end
 
 def set_category(message)
   event =Event.create(message: message)
-  Keyword.all.each do|Keyword|
+  Keyword.all.each do|keyword|
    if event.message.include?(keyword.name)
     event.category_id= keyword.category_id
   else

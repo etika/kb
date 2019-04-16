@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     get 'admin_settings' =>'home#admin_settings'
     get '/promote_worker/:id', to: 'home#promote_worker',as: 'promote_worker'
     get '/delete_worker/:id', to: 'home#delete_worker',as: 'delete_worker'
+    get 'check_otp'=> 'home#check_otp'
     root 'home#index'
 end
