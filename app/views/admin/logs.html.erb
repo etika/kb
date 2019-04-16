@@ -1,3 +1,5 @@
 <div id="events"> 
   <%= render :partial => "logs", :locals => { :events => @events }  %>
+  <%= link_to "Download as CSV", logs_path(:format => "csv") %>
+
 </div>

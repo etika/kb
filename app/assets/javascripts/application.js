@@ -24,7 +24,7 @@
 //= require_tree .
 
 $(function() {
-    $("#event_lists").dataTable();
+    $("#event_lists").DataTable({"order": [[ 3, "desc" ]]});
     setTimeout(updateLogs, 100000)
 });
 
