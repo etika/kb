@@ -20,11 +20,13 @@ def listing_whatsapp_message
 
    @messages = @twilio_client.messages.list(
                               to:'whatsapp:+14155238886',
-                              date_sent: Event.last.start_date
+                              date_sent_after:  Event.last.sent_date
                            )
 
  @messages.each do |m|
-  if !m.media_url.present?
+  phone_number =m.from.split("+")[1]
+  user = User.find_by_phone_number(phone_number)
+  if !m.media_url.present? && u.account_activated?
     set_category(m)
   end
 end
