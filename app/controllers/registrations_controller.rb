@@ -30,16 +30,15 @@ class RegistrationsController < Devise::RegistrationsController
         if  @errors.present?
           @errors.full_messages.each do |err|
             @errors_message+=err+ "<br>"
-        end
+          end
         @errors_message=@errors_message.html_safe
         format.js { render :file => "/devise/registrations/create.js.erb" }
         format.html {render "/devise/registrations/new.html.erb"}
-      end
-
+        end
       @errors_message=@errors_message.html_safe
     end
   end
-
+end
 protected
 def permitted_user
   params.require(:user).permit(:email,:role_id,:uid,:password,:activation_token,:password_confirmation,:phone_number)
