@@ -20,7 +20,7 @@ def listing_whatsapp_message
 
    @messages = @twilio_client.messages.list(
                               to:'whatsapp:+14155238886',
-                              date_sent_after:  Event.last.sent_date
+                              date_sent_after:  Event.last.sent_date.present? ? Event.last.sent_date : Date.today
                            )
 
  @messages.each do |m|
