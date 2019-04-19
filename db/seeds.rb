@@ -36,7 +36,7 @@ if Category.count <1
   Category.create(name: 'Uncoded')
 end
 
-User.create!(email:"admin@gmaila.com",account_activated:true, role_id:1, password:"ahujaetika10")
+User.create!(email:"admin@gmaila.com",account_activated:true, role_id:1, password:"abcdefgh")
 
 
 
