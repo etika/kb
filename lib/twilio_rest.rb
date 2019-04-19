@@ -5,13 +5,11 @@ module TwilioRest
 def send_message(phone_number,activation_token)
   number_to_send_to = phone_number
    @twilio_client = Twilio::REST::Client.new APP_CONFIG['TWILIO_SID'], APP_CONFIG['TWILIO_TOKEN']
-
- @twilio_client.messages.create(
+  @twilio_client.messages.create(
                 :from => "+1#{APP_CONFIG['TWILIO_PHONE_NUMBER']}",
                :to => number_to_send_to,
                  :body =>"Security Code is #{activation_token}"
                 )
-
 end
 
 def listing_whatsapp_message
@@ -26,7 +24,7 @@ def listing_whatsapp_message
  @messages.each do |m|
   phone_number =m.from.split("+")[1]
   user = User.find_by_phone_number(phone_number)
-  if !m.media_url.present? && u.account_activated?
+  if m.media_url.nil? && u.account_activated?
     set_category(m)
   end
 end
@@ -35,11 +33,11 @@ end
 def set_category(message)
   event =Event.create(message: message.body,start_date: message.date_sent)
   Keyword.all.each do|keyword|
-   if event.message.include?(keyword.name)
-    event.category_id = keyword.category_id
-  else
-    event.category_id = Category.where(name: "Uncoded").last.id
-   end
+    if event.message.include?(keyword.name)
+      event.category_id = keyword.category_id
+    else
+      event.category_id = Category.where(name: "Uncoded").last.id
+    end
    event.save
   end
 end
