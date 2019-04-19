@@ -31,7 +31,6 @@ end
 end
 
 def set_category(message)
-  binding.remote_pry
   event =Event.create(message: message.body,start_date: message.date_sent)
   Keyword.all.each do|keyword|
     if event.message.include?(keyword.name)
