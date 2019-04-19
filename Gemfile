@@ -78,4 +78,4 @@ gem "chartkick"
 gem 'groupdate'
 gem 'cancancan'
 gem 'jquery-datatables'
-
+gem 'pry-remote'
