@@ -8,7 +8,7 @@ def send_message(phone_number,activation_token)
 
  @twilio_client.messages.create(
                 :from => "+1#{APP_CONFIG['TWILIO_PHONE_NUMBER']}",
-                 :to => number_to_send_to,
+                 :to => "+1#{number_to_send_to}",
                  :body =>"Security Code is #{activation_token}"
                 )
 
