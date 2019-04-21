@@ -32,6 +32,7 @@ end
 
 def set_category(message)
   event =Event.new(message: message.body,start_date: message.date_sent, user_id:1)
+   puts "---", event.id
   Keyword.all.each do|keyword|
     if event.message.include?(keyword.name)
       event.category_id = keyword.category_id
